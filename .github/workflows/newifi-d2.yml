@@ -1,4 +1,4 @@
-name: IMwrt-24.10-6.6
+name: d-team_newifi-d2
 
 on:
   repository_dispatch:
