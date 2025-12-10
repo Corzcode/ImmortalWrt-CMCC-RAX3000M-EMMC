@@ -51,22 +51,22 @@ on:
         description: '集成keepalived'
         type: boolean
         required: true
-        default: true
+        default: false
       ssh:
         description: 'SSH connection to Actions'
         type: boolean
         required: true
         default: false
-      # istore:
-      #   description: '集成iStore商店'
-      #   type: boolean
-      #   required: true
-      #   default: false
-      # enable_openclash:
-      #   description: '集成openclash'
-      #   type: boolean
-      #   required: true
-      #   default: true
+      istore:
+        description: '集成iStore商店'
+        type: boolean
+        required: true
+        default: false
+      enable_openclash:
+        description: '集成openclash'
+        type: boolean
+        required: true
+        default: false
       # enable_wechatpush:
       #   description: '集成wechatpush'
       #   type: boolean
@@ -336,6 +336,7 @@ jobs:
         timeout-minutes: 30
         run: |
           cd openwrt
+          echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
           ./scripts/feeds update -a || { echo "❌ 更新 Feeds 失败"; exit 1; }
           ./scripts/feeds install -a || { echo "❌ 安装 Feeds 失败"; exit 1; }
 
