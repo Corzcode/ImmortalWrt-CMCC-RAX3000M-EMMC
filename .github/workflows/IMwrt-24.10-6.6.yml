@@ -271,7 +271,7 @@ jobs:
 
       - name: 检查磁盘空间
         run: |
-          MIN_SPACE=10
+          MIN_SPACE=25
           AVAILABLE=$(df -BG . | tail -1 | awk '{print $4}' | sed 's/G//')
           if [ -z "$AVAILABLE" ] || [ "$AVAILABLE" -lt "$MIN_SPACE" ]; then
             echo "错误：磁盘空间不足，可用空间 ${AVAILABLE}G，需至少 ${MIN_SPACE}G"
