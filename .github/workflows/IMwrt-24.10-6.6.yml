@@ -97,6 +97,7 @@ env:
   ENABLE_KEEPALIVED: ${{ github.event.inputs.enable_keepalived || 'true' }}
   ENABLE_OPENCLASH: ${{ github.event.inputs.enable_openclash || 'true' }}
   ENABLE_WECHATPUSH: ${{ github.event.inputs.enable_wechatpush || 'true' }}
+  DELETE_USELESS_FILES: true
 
 jobs:
   check-source-updates:
