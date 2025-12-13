@@ -1,4 +1,4 @@
-name: IMwrt-24.10-6.6
+name: CMCC-RAX3000M-EMMC
 
 on:
   repository_dispatch:
