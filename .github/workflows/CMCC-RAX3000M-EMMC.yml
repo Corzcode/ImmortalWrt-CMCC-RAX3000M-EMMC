@@ -377,8 +377,9 @@ jobs:
         timeout-minutes: 30
         run: |
           cd openwrt
+
           #打回异常的提交
-          git revert f64688cec279bff54d36c709d92a13fa2eec971a --no-commit
+          #git revert f64688cec279bff54d36c709d92a13fa2eec971a --no-commit
 
           echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
           ./scripts/feeds update -a || { echo "❌ 更新 Feeds 失败"; exit 1; }
