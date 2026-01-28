@@ -57,6 +57,11 @@ on:
         type: boolean
         required: true
         default: false
+      helloworld:
+        description: '集成Helloworld'
+        type: boolean
+        required: true
+        default: false
       istore:
         description: '集成iStore商店'
         type: boolean
@@ -380,8 +385,7 @@ jobs:
 
           #打回异常的提交
           #git revert f64688cec279bff54d36c709d92a13fa2eec971a --no-commit
-
-          echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
+          
           ./scripts/feeds update -a || { echo "❌ 更新 Feeds 失败"; exit 1; }
           ./scripts/feeds install -a || { echo "❌ 安装 Feeds 失败"; exit 1; }
 
@@ -391,6 +395,15 @@ jobs:
           git clone --depth=1 https://github.com/PlanetEditorX/luci-app-build.git
           mkdir -p openwrt/package/luci-app-keepalived-ha
           cp -r luci-app-build/luci-app-keepalived-ha/* openwrt/package/luci-app-keepalived-ha/
+
+      - name: 安装helloworld
+        if: (github.event.inputs.helloworld == 'true')
+        run: |
+          cd openwrt
+          echo >> feeds.conf.default
+          echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
+          ./scripts/feeds update helloworld
+          ./scripts/feeds install -a -f -p helloworld
 
       - name: 安装iStore商店
         if: (github.event.inputs.istore == 'true')
